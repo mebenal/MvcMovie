@@ -1,0 +1,27 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.navbar {
+    background-color: slategray !important;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: lightgrey;
+}
+
+p, a, h1, h2, h3, h4, h5, td {
+    font-family:Britannic
+}

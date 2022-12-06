@@ -1,0 +1,65 @@
+﻿@model MvcMovie.Models.MovieEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Movie.Id" />
+            <div class="form-group">
+                <label asp-for="Movie.Title" class="control-label"></label>
+                <input asp-for="Movie.Title" class="form-control" />
+                <span asp-validation-for="Movie.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.ReleaseDate" class="control-label"></label>
+                <input asp-for="Movie.ReleaseDate" class="form-control" />
+                <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.GenreId" class="control-label"></label>
+                <select asp-for="Movie.GenreId" class="form-control">
+                    <option value="@Html.Raw(Model.Movie.Genre.GenreId)">@Html.Raw(Model.Movie.Genre.GenreName)</option>
+                    @foreach (Genre item in Model.Genres.Where(genre => genre.GenreId != Model.Movie.Genre.GenreId).ToList())
+                    {
+                        <option value="@Html.Raw(item.GenreId)">@Html.Raw(item.GenreName)</option>
+                    }
+                </select>
+                <span asp-validation-for="Movie.GenreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.Price" class="control-label"></label>
+                <input asp-for="Movie.Price" class="form-control" />
+                <span asp-validation-for="Movie.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.Rating" class="control-label"></label>
+                <input asp-for="Movie.Rating" class="form-control" />
+                <span asp-validation-for="Movie.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Movie.ImageUrl" class="control-label"></label>
+                <input asp-for="Movie.ImageUrl" class="form-control" />
+                <span asp-validation-for="Movie.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
